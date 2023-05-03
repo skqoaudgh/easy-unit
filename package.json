@@ -1,0 +1,28 @@
+{
+	"name": "easy-unit",
+	"version": "0.0.1",
+	"description": "Javascript unit converter",
+	"main": "index.js",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/skqoaudgh/easy-unit"
+	},
+	"scripts": {
+		"build": "rollup -c"
+	},
+	"author": "Myungho Bae (Cada)",
+	"license": "MIT",
+	"exports": {
+		".": {
+			"require": "./lib/cjs/index.js",
+			"import": "./lib/esm/index.js"
+		}
+	},
+	"devDependencies": {
+		"@babel/preset-env": "^7.21.5",
+		"@rollup/plugin-babel": "^6.0.3",
+		"@rollup/plugin-commonjs": "^24.1.0",
+		"rollup": "^3.21.3"
+	}
+}
