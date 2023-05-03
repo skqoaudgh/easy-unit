@@ -57,8 +57,10 @@ export default class Converter {
 			throw new Error('parameter digit expected a number');
 		}
 
-		if (digit === 0) {
-			throw new Error('parameter digit expected greater than 0');
+		if (digit === 0 || digit > 100) {
+			throw new Error(
+				'parameter digit expected greater than 0 and less than 100'
+			);
 		}
 
 		if (typeof printUnit !== 'boolean') {
