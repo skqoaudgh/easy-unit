@@ -48,7 +48,7 @@ export default class Converter {
 		this.#base = parseFloat(String(value));
 	}
 
-	to(unit, { digit = null, printUnit = false } = {}) {
+	to(unit, { digit = null, printUnit = true } = {}) {
 		if (typeof unit !== 'string') {
 			throw new Error('parameter unit expected a string');
 		}
