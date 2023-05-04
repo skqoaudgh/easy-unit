@@ -5,6 +5,7 @@ const SYSTEM = {
 
 const WEIGHT = {
 	[SYSTEM.TIME]: {
+		ms: 0.001,
 		s: 1,
 		m: 60,
 		h: 3600,
@@ -26,6 +27,7 @@ const getSystem = (unit) => {
 		case 'h':
 		case 'm':
 		case 's':
+		case 'ms':
 			return SYSTEM.TIME;
 		case 'mg':
 		case 'g':
