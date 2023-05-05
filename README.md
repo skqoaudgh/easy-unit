@@ -56,20 +56,50 @@ console.log(hours); // --> 1h
 ```
 
 **3. Weight unit convert** \
-Convert time(tons, killograms, grams, milligrams) unit.
+Convert weight(tons, killograms, grams, milligrams) unit.
 
 ```javascript
 // Convert tons to killograms
-const minutes = new Cv('3t').to('kg');
-console.log(minutes); // --> 3000kg
+const killograms = new Cv('3t').to('kg');
+console.log(killograms); // --> 3000kg
 
 // Convert killograms to grams
-const seconds = new Cv('10kg').to('g');
-console.log(seconds); // --> 10000g
+const grams = new Cv('10kg').to('g');
+console.log(grams); // --> 10000g
 
 // Convert milligrams to killograms
-const hours = new Cv('10000mg')to('g');
-console.log(hours); // --> 0.01kg
+const killograms = new Cv('10000mg')to('g');
+console.log(killograms); // --> 0.01kg
+```
+
+**4. Distance unit convert** \
+Convert distance(kilometers, meters, centimeters, millimeters) unit.
+
+```javascript
+// Convert kilometers to meters
+const meters = new Cv('2km').to('m');
+console.log(meters); // --> 2000m
+
+// Convert meters to centimeters
+const centimeters = new Cv('12m').to('cm');
+console.log(centimeters); // --> 1200cm
+
+// Convert millimeters to centimeters
+const centimeters = new Cv('1000mm')to('cm');
+console.log(centimeters); // --> 100cm
+```
+
+**5. Temperature unit convert** \
+Convert temperature(Fahrenheit, Celsius) unit.
+
+```javascript
+// Convert Fahrenheit to Celsius
+const meters = new Cv('33.8F').to('C');
+console.log(meters); // --> 1C
+
+// Convert Celsius to Fahrenheit
+const centimeters = new Cv('32C').to('F');
+console.log(centimeters); // --> 0F
 ```
 
 ## Authors

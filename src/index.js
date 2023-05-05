@@ -1,6 +1,8 @@
 const SYSTEM = {
 	TIME: 'time',
 	WEIGHT: 'weight',
+	DISTANCE: 'distance',
+	TEMPERATURE: 'temperature',
 };
 
 const WEIGHT = {
@@ -16,27 +18,35 @@ const WEIGHT = {
 		kg: 1000,
 		t: 1000000,
 	},
+	[SYSTEM.DISTANCE]: {
+		mm: 0.1,
+		cm: 1,
+		m: 100,
+		km: 100000,
+	},
 };
 
-const getSystem = (unit) => {
-	if (typeof unit !== 'string') {
+const FORMULA = {
+	[SYSTEM.TEMPERATURE]: {
+		C: (F) => (Number(F) - 32) / 1.8,
+		F: (C) => Number(C) * 1.8 + 32,
+	},
+};
+
+const getSystem = (from, to) => {
+	if (typeof from !== 'string' || typeof to !== 'string') {
 		throw new Error('parameter expected a string');
 	}
 
-	switch (unit) {
-		case 'h':
-		case 'm':
-		case 's':
-		case 'ms':
-			return SYSTEM.TIME;
-		case 'mg':
-		case 'g':
-		case 'kg':
-		case 't':
-			return SYSTEM.WEIGHT;
-		default:
-			return null;
+	for (const [key, value] of Object.entries(WEIGHT)) {
+		const units = Object.keys(value);
+
+		if (units.includes(from) && units.includes(to)) {
+			return key;
+		}
 	}
+
+	return null;
 };
 
 const getUnit = (value) => {
@@ -51,6 +61,26 @@ const getUnit = (value) => {
 	}
 
 	return unit;
+};
+
+const canCalculateWithWeight = (system) => {
+	const weightSystmes = Object.keys(WEIGHT);
+
+	return weightSystmes.includes(system);
+};
+
+const convertUnitByWeight = ({ system, base, from, to }) => {
+	const curWeight = WEIGHT[system][from];
+	const targetWeight = WEIGHT[system][to];
+	const result = base * (curWeight / targetWeight);
+
+	return result;
+};
+
+const converUnitByFormula = ({ system, base, to }) => {
+	const formula = FORMULA[system][to];
+
+	return formula(base);
 };
 
 export default class Converter {
@@ -81,17 +111,28 @@ export default class Converter {
 			throw new Error('parameter printUnit expected a boolean');
 		}
 
-		const curSystem = getSystem(this.#unit);
-		const targetSystem = getSystem(unit);
+		const system = getSystem(this.#unit, unit);
 
-		if (curSystem !== targetSystem) {
-			console.log(curSystem, targetSystem);
+		if (!system) {
 			throw new Error('parameter expected a same system with baes unit');
 		}
 
-		const curWeight = WEIGHT[curSystem][this.#unit];
-		const targetWeight = WEIGHT[curSystem][unit];
-		const value = this.#base * (curWeight / targetWeight);
+		let value = 0;
+		if (canCalculateWithWeight(system)) {
+			value = convertUnitByWeight({
+				system,
+				base: this.#base,
+				from: this.#unit,
+				to: unit,
+			});
+		} else {
+			value = converUnitByFormula({
+				system,
+				base: this.#base,
+				to: unit,
+			});
+		}
+
 		const result = !digit ? value : Number(value).toFixed(digit);
 
 		return !printUnit ? Number(result) : `${result}${unit}`;
