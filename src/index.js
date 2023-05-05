@@ -46,6 +46,14 @@ const getSystem = (from, to) => {
 		}
 	}
 
+	for (const [key, value] of Object.entries(FORMULA)) {
+		const units = Object.keys(value);
+
+		if (units.includes(from) && units.includes(to)) {
+			return key;
+		}
+	}
+
 	return null;
 };
 
@@ -54,7 +62,7 @@ const getUnit = (value) => {
 		throw new Error('parameter expected a string');
 	}
 
-	const unit = value.replace(/([0-9]|\.|\,)+([\S]+)?/, '$2').trim();
+	const unit = value.replace(/(-|[0-9]|\.|\,)+([\S]+)?/, '$2').trim();
 
 	if (!unit || /\d/.test(unit)) {
 		return null;
@@ -112,9 +120,8 @@ export default class Converter {
 		}
 
 		const system = getSystem(this.#unit, unit);
-
 		if (!system) {
-			throw new Error('parameter expected a same system with baes unit');
+			throw new Error('parameter expected a same system with base unit');
 		}
 
 		let value = 0;

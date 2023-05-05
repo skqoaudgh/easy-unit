@@ -9,7 +9,11 @@
 		"url": "https://github.com/skqoaudgh/easy-unit"
 	},
 	"scripts": {
-		"build": "rollup -c"
+		"build": "rollup -c",
+		"test": "jest",
+		"preversion": "npm test",
+		"postversion": "npm publish",
+		"postpublish": "git push origin --all; git push origin --tags"
 	},
 	"author": "Myungho Bae (Cada)",
 	"license": "MIT",
@@ -23,6 +27,7 @@
 		"@babel/preset-env": "^7.21.5",
 		"@rollup/plugin-babel": "^6.0.3",
 		"@rollup/plugin-commonjs": "^24.1.0",
+		"jest": "^29.5.0",
 		"rollup": "^3.21.3"
 	}
 }
