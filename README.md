@@ -100,12 +100,12 @@ Convert temperature(Fahrenheit, Celsius) unit.
 
 ```javascript
 // Convert Fahrenheit to Celsius
-const meters = new Cv('33.8F').to('C');
-console.log(meters); // --> 1C
+const celsius = new Cv('33.8F').to('C');
+console.log(celsius); // --> 1C
 
 // Convert Celsius to Fahrenheit
-const centimeters = new Cv('32C').to('F');
-console.log(centimeters); // --> 0F
+const fahrenheit = new Cv('32C').to('F');
+console.log(fahrenheit); // --> 0F
 ```
 
 ## Authors
