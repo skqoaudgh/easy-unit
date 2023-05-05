@@ -4,10 +4,16 @@
 
 ## Prerequisites
 
-Run the following command to install easy-unit into your existing project:
+Run the following [npm](https://www.npmjs.com/) command to install easy-unit into your existing project:
 
 ```
 npm i easy-unit
+```
+
+Or, Run the following [yarn](https://classic.yarnpkg.com/) commnad.
+
+```
+yarn add easy-unit
 ```
 
 ## Output Configuration
