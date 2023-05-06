@@ -127,3 +127,34 @@ it('Convert temperature unit', () => {
 		expect(value).toBe(expectedValues[i]);
 	}
 });
+
+it('Convert area unit', () => {
+	const from = [
+		'1m^2',
+		'100m^2',
+		'3000m^2',
+		'1a',
+		'10a',
+		'200a',
+		'2ha',
+		'1ha',
+		'3ha',
+	];
+	const to = ['m^2', 'a', 'ha', 'm^2', 'a', 'ha', 'm^2', 'a', 'ha'];
+	const expectedValues = [
+		'1m^2',
+		'1a',
+		'0.3ha',
+		'100m^2',
+		'10a',
+		'2ha',
+		'20000m^2',
+		'100a',
+		'3ha',
+	];
+
+	for (let i = 0; i < from.length; i++) {
+		const value = new Cv(from[i]).to(to[i]);
+		expect(value).toBe(expectedValues[i]);
+	}
+});

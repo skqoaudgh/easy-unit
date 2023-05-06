@@ -3,6 +3,7 @@ const SYSTEM = {
 	WEIGHT: 'weight',
 	DISTANCE: 'distance',
 	TEMPERATURE: 'temperature',
+	AREA: 'area',
 };
 
 const WEIGHT = {
@@ -23,6 +24,11 @@ const WEIGHT = {
 		cm: 1,
 		m: 100,
 		km: 100000,
+	},
+	[SYSTEM.AREA]: {
+		'm^2': 1,
+		a: 100,
+		ha: 10000,
 	},
 };
 
@@ -63,8 +69,7 @@ const getUnit = (value) => {
 	}
 
 	const unit = value.replace(/(-|[0-9]|\.|\,)+([\S]+)?/, '$2').trim();
-
-	if (!unit || /\d/.test(unit)) {
+	if (!unit || /[^\^]\d/.test(unit)) {
 		return null;
 	}
 

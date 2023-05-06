@@ -108,6 +108,23 @@ const fahrenheit = new Cv('32C').to('F');
 console.log(fahrenheit); // --> 0F
 ```
 
+**6. Area unit convert** \
+Convert area(hectare, are, square metre) unit.
+
+```javascript
+// Convert hectare to are
+const are = new Cv('20ha').to('a');
+console.log(are); // --> 20000a
+
+// Convert are to square meter
+const squareMeter = new Cv('150a').to('m^2');
+console.log(squareMeter); // --> 15000m^2
+
+// Convert square meter to hectare
+const hectare = new Cv('50000m^2').to('ha');
+console.log(hectare); // --> 5ha
+```
+
 ## Authors
 
 **Myungho Bae** - _aka Cada_
