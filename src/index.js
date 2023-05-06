@@ -90,10 +90,28 @@ const convertUnitByWeight = ({ system, base, from, to }) => {
 	return result;
 };
 
-const converUnitByFormula = ({ system, base, to }) => {
-	const formula = FORMULA[system][to];
+const converUnitByFormula = ({ system, base, from, to }) => {
+	const formula = from !== to ? FORMULA[system][to] : (base) => base;
 
 	return formula(base);
+};
+
+const convert = ({ system, base, from, to }) => {
+	if (canCalculateWithWeight(system)) {
+		return convertUnitByWeight({
+			system,
+			base,
+			from,
+			to,
+		});
+	}
+
+	return converUnitByFormula({
+		system,
+		base,
+		from,
+		to,
+	});
 };
 
 export default class Converter {
@@ -126,27 +144,45 @@ export default class Converter {
 
 		const system = getSystem(this.#unit, unit);
 		if (!system) {
+			console.log(this.#unit, unit);
 			throw new Error('parameter expected a same system with base unit');
 		}
 
-		let value = 0;
-		if (canCalculateWithWeight(system)) {
-			value = convertUnitByWeight({
-				system,
-				base: this.#base,
-				from: this.#unit,
-				to: unit,
-			});
-		} else {
-			value = converUnitByFormula({
-				system,
-				base: this.#base,
-				to: unit,
-			});
-		}
-
+		const value = convert({
+			system,
+			base: this.#base,
+			from: this.#unit,
+			to: unit,
+		});
 		const result = !digit ? value : Number(value).toFixed(digit);
 
 		return !printUnit ? Number(result) : `${result}${unit}`;
+	}
+
+	add(value) {
+		if (typeof value !== 'string') {
+			throw new Error('parameter printUnit expected a string');
+		}
+
+		const unit = getUnit(value) || this.#unit;
+		const system = getSystem(this.#unit, unit);
+		if (!system) {
+			throw new Error('parameter expected a same system with base unit');
+		}
+
+		const toValue = convert({
+			system,
+			base: parseFloat(value),
+			from: unit,
+			to: this.#unit,
+		});
+		const result = this.#base + parseFloat(toValue);
+		this.#base = result;
+
+		return `${result}${this.#unit}`;
+	}
+
+	toString() {
+		return `${this.#base}${this.#unit}`;
 	}
 }

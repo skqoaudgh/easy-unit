@@ -118,9 +118,18 @@ it('Convert distance unit', () => {
 });
 
 it('Convert temperature unit', () => {
-	const from = ['0C', '-10C', '35C', '5F', '-58F', '50F'];
-	const to = ['F', 'F', 'F', 'C', 'C', 'C'];
-	const expectedValues = ['32F', '14F', '95F', '-15C', '-50C', '10C'];
+	const from = ['0C', '-10C', '35C', '1C', '5F', '-58F', '50F', '1F'];
+	const to = ['F', 'F', 'F', 'C', 'C', 'C', 'C', 'F'];
+	const expectedValues = [
+		'32F',
+		'14F',
+		'95F',
+		'1C',
+		'-15C',
+		'-50C',
+		'10C',
+		'1F',
+	];
 
 	for (let i = 0; i < from.length; i++) {
 		const value = new Cv(from[i]).to(to[i]);
@@ -155,6 +164,17 @@ it('Convert area unit', () => {
 
 	for (let i = 0; i < from.length; i++) {
 		const value = new Cv(from[i]).to(to[i]);
+		expect(value).toBe(expectedValues[i]);
+	}
+});
+
+it('Add two values', () => {
+	const from = ['10m', '1km', '5F'];
+	const addedValue = ['3h', '500m', '35C'];
+	const expectedValues = ['190m', '1.5km', '100F'];
+
+	for (let i = 0; i < from.length; i++) {
+		const value = new Cv(from[i]).add(addedValue[i]);
 		expect(value).toBe(expectedValues[i]);
 	}
 });

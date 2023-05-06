@@ -1,6 +1,6 @@
 # easy-unit
 
-> The easiest Javascript unit converter
+> The easiest Javascript library for parsing, validating, manipulating, and formatting units.
 
 ## Prerequisites
 
@@ -123,6 +123,23 @@ console.log(squareMeter); // --> 15000m^2
 // Convert square meter to hectare
 const hectare = new Cv('50000m^2').to('ha');
 console.log(hectare); // --> 5ha
+```
+
+**7. Add** \
+Add two values.
+
+```javascript
+// Add two time values
+const result = new Cv('10m').to('3h');
+console.log(result); // --> 190m
+
+// Add two distance values
+const result = new Cv('1km').to('500m');
+console.log(result); // --> 1.5km
+
+// Add two temperature values
+const hectare = new Cv('5F').to('35C');
+console.log(hectare); // --> 100F
 ```
 
 ## Authors
