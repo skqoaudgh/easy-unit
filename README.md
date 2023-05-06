@@ -138,8 +138,8 @@ const result = new Cv('1km').to('500m');
 console.log(result); // --> 1.5km
 
 // Add two temperature values
-const hectare = new Cv('5F').to('35C');
-console.log(hectare); // --> 100F
+const result = new Cv('5F').to('35C');
+console.log(result); // --> 100F
 ```
 
 ## Authors
