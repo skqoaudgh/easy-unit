@@ -123,6 +123,40 @@ export default class Converter {
 		this.#base = parseFloat(String(value));
 	}
 
+	get unit() {
+		return this.#unit;
+	}
+
+	set unit(unit) {
+		this.#unit = unit;
+		return unit;
+	}
+
+	setUnit(unit) {
+		this.#unit = unit;
+		return unit;
+	}
+
+	get base() {
+		return this.#base;
+	}
+
+	set base(base) {
+		this.#base = base;
+		return base;
+	}
+
+	setBase(base) {
+		this.#base = base;
+		return base;
+	}
+
+	set(value = '', unit = '') {
+		this.#unit = getUnit(value) || unit;
+		this.#base = parseFloat(String(value));
+		return `${this.#unit}${this.#base}`;
+	}
+
 	to(unit, { digit = null, printUnit = true } = {}) {
 		if (typeof unit !== 'string') {
 			throw new Error('parameter unit expected a string');
