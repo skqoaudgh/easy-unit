@@ -29,7 +29,43 @@ The number of digits to appear after the decimal point, should be a value betwee
 **printUnit** \
 When set to `false`, then the output will do not include unit, So only appeared with number value.
 
-## How to use
+## How to validate
+
+```javascript
+// Validate that assigned unit is convertable
+const result = new Cv('3h').isValid();
+console.log(result); // --> true
+
+const result = new Cv('3e').isValid('m');
+console.log(result); // --> false
+
+// Validate that unit is on the same system
+const result = new Cv('10kg').isValid('8t');
+console.log(result); // --> true
+
+const result = new Cv('30m').isValid('24.5C');
+console.log(result); // --> false
+```
+
+## How to get/set values
+
+```javascript
+// Getter/Setter of unit
+const unit = new Cv('3h').unit;
+console.log(unit); // --> h
+
+const unit = new Cv('30ha').getUnit();
+console.log(unit); // --> ha
+
+// Getter/Setter of base
+const base = new Cv('10kg').base;
+console.log(base); // --> 10
+
+const base = new Cv('24.5C').getBase();
+console.log(base); // --> 24.5
+```
+
+## How to convert
 
 **1. Import** \
 You can import with CJS and ESM both.

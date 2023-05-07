@@ -296,38 +296,38 @@ describe('Getter/Setter', () => {
 });
 
 describe('Validate', () => {
-	// it('Validate that assigned unit is convertable', () => {
-	// 	const values = [
-	// 		'10m',
-	// 		'30kg',
-	// 		'24.5C',
-	// 		'5.5cm',
-	// 		'9ha',
-	// 		'32u',
-	// 		'600i',
-	// 		'77er',
-	// 		'n8',
-	// 		'100k0k',
-	// 	];
+	it('Validate that assigned unit is convertable', () => {
+		const values = [
+			'10m',
+			'30kg',
+			'24.5C',
+			'5.5cm',
+			'9ha',
+			'32u',
+			'600i',
+			'77er',
+			'n8',
+			'100k0k',
+		];
 
-	// 	const expectedValues = [
-	// 		true,
-	// 		true,
-	// 		true,
-	// 		true,
-	// 		true,
-	// 		false,
-	// 		false,
-	// 		false,
-	// 		false,
-	// 		false,
-	// 	];
+		const expectedValues = [
+			true,
+			true,
+			true,
+			true,
+			true,
+			false,
+			false,
+			false,
+			false,
+			false,
+		];
 
-	// 	for (let i = 0; i < values.length; i++) {
-	// 		const result = new Cv(values[i]).isValid();
-	// 		expect(result).toBe(expectedValues[i]);
-	// 	}
-	// });
+		for (let i = 0; i < values.length; i++) {
+			const result = new Cv(values[i]).isValid();
+			expect(result).toBe(expectedValues[i]);
+		}
+	});
 
 	it('Validate that unit is on the same system', () => {
 		const values1 = [
