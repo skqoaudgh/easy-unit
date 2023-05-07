@@ -1,6 +1,6 @@
 {
 	"name": "easy-unit",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "Javascript unit converter",
 	"main": "index.js",
 	"type": "module",
