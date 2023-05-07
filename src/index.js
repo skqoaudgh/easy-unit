@@ -63,7 +63,7 @@ const getSystem = (from, to) => {
 	return null;
 };
 
-const getUnit = (value) => {
+const parseValueToUnit = (value) => {
 	if (typeof value !== 'string') {
 		throw new Error('parameter expected a string');
 	}
@@ -133,11 +133,15 @@ export default class Converter {
 	#unit = null;
 
 	constructor(value = '', unit = '') {
-		this.#unit = getUnit(value) || unit;
+		this.#unit = parseValueToUnit(value) || unit;
 		this.#base = parseFloat(String(value));
 	}
 
 	get unit() {
+		return this.#unit;
+	}
+
+	getUnit() {
 		return this.#unit;
 	}
 
@@ -163,6 +167,10 @@ export default class Converter {
 		return this.#base;
 	}
 
+	getBase() {
+		return this.#base;
+	}
+
 	set base(base) {
 		if (typeof base !== 'number') {
 			throw new Error('parameter base expected a string');
@@ -182,16 +190,17 @@ export default class Converter {
 	}
 
 	set(value = '', unit = '') {
-		this.#unit = getUnit(value) || unit;
+		this.#unit = parseValueToUnit(value) || unit;
 		this.#base = parseFloat(String(value));
 		return `${this.#unit}${this.#base}`;
 	}
 
-	isValid(unit = '') {
+	isValid(value = '') {
 		if (unit && typeof unit !== 'string') {
 			throw new Error('parameter unit expected a string');
 		}
 
+		const unit = parseValueToUnit(value) || '';
 		return unit ? !!getSystem(this.#unit, unit) : isValidUnit(this.#unit);
 	}
 
@@ -216,7 +225,6 @@ export default class Converter {
 
 		const system = getSystem(this.#unit, unit);
 		if (!system) {
-			console.log(this.#unit, unit);
 			throw new Error('parameter expected a same system with base unit');
 		}
 
@@ -236,7 +244,7 @@ export default class Converter {
 			throw new Error('parameter printUnit expected a string');
 		}
 
-		const unit = getUnit(value) || this.#unit;
+		const unit = parseValueToUnit(value) || this.#unit;
 		const system = getSystem(this.#unit, unit);
 		if (!system) {
 			throw new Error('parameter expected a same system with base unit');
