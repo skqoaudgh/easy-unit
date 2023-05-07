@@ -114,6 +114,20 @@ const convert = ({ system, base, from, to }) => {
 	});
 };
 
+const isValidUnit = (unit) => {
+	const isWeightUnit = Object.values(WEIGHT).some((values) =>
+		Object.keys(values).includes(unit)
+	);
+
+	if (isWeightUnit) {
+		return true;
+	}
+
+	return Object.values(FORMULA).some((values) =>
+		Object.keys(values).includes(unit)
+	);
+};
+
 export default class Converter {
 	#base = 0;
 	#unit = null;
@@ -128,11 +142,19 @@ export default class Converter {
 	}
 
 	set unit(unit) {
+		if (typeof unit !== 'string') {
+			throw new Error('parameter unit expected a string');
+		}
+
 		this.#unit = unit;
 		return unit;
 	}
 
 	setUnit(unit) {
+		if (typeof unit !== 'string') {
+			throw new Error('parameter unit expected a string');
+		}
+
 		this.#unit = unit;
 		return unit;
 	}
@@ -142,11 +164,19 @@ export default class Converter {
 	}
 
 	set base(base) {
+		if (typeof base !== 'number') {
+			throw new Error('parameter base expected a string');
+		}
+
 		this.#base = base;
 		return base;
 	}
 
 	setBase(base) {
+		if (typeof base !== 'number') {
+			throw new Error('parameter base expected a string');
+		}
+
 		this.#base = base;
 		return base;
 	}
@@ -155,6 +185,14 @@ export default class Converter {
 		this.#unit = getUnit(value) || unit;
 		this.#base = parseFloat(String(value));
 		return `${this.#unit}${this.#base}`;
+	}
+
+	isValid(unit = '') {
+		if (unit && typeof unit !== 'string') {
+			throw new Error('parameter unit expected a string');
+		}
+
+		return unit ? !!getSystem(this.#unit, unit) : isValidUnit(this.#unit);
 	}
 
 	to(unit, { digit = null, printUnit = true } = {}) {
