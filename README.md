@@ -29,6 +29,20 @@ The number of digits to appear after the decimal point, should be a value betwee
 **printUnit** \
 When set to `false`, then the output will do not include unit, So only appeared with number value.
 
+## How to import
+
+You can import with CJS and ESM both.
+
+```javascript
+// Import with CJS (CommonJS)
+const Cv = require('easy-unit');
+new Cv();
+
+// Import with ESM (ES Modules)
+import Cv from 'easy-unit';
+new Cv();
+```
+
 ## How to validate
 
 ```javascript
@@ -67,20 +81,7 @@ console.log(base); // --> 24.5
 
 ## How to convert
 
-**1. Import** \
-You can import with CJS and ESM both.
-
-```javascript
-// Import with CJS (CommonJS)
-const Cv = require('easy-unit');
-new Cv();
-
-// Import with ESM (ES Modules)
-import Cv from 'easy-unit';
-new Cv();
-```
-
-**2. Time unit convert** \
+**1. Time unit convert** \
 Convert time(hours, minutes, seconds, millieseconds) unit.
 
 ```javascript
@@ -97,7 +98,7 @@ const hours = new Cv('3600s')to('h');
 console.log(hours); // --> 1h
 ```
 
-**3. Weight unit convert** \
+**2. Weight unit convert** \
 Convert weight(tons, killograms, grams, milligrams) unit.
 
 ```javascript
@@ -114,7 +115,7 @@ const killograms = new Cv('10000mg')to('g');
 console.log(killograms); // --> 0.01kg
 ```
 
-**4. Distance unit convert** \
+**3. Distance unit convert** \
 Convert distance(kilometers, meters, centimeters, millimeters) unit.
 
 ```javascript
@@ -131,7 +132,7 @@ const centimeters = new Cv('1000mm')to('cm');
 console.log(centimeters); // --> 100cm
 ```
 
-**5. Temperature unit convert** \
+**4. Temperature unit convert** \
 Convert temperature(Fahrenheit, Celsius) unit.
 
 ```javascript
@@ -144,7 +145,7 @@ const fahrenheit = new Cv('32C').to('F');
 console.log(fahrenheit); // --> 0F
 ```
 
-**6. Area unit convert** \
+**5. Area unit convert** \
 Convert area(hectare, are, square metre) unit.
 
 ```javascript
@@ -161,8 +162,9 @@ const hectare = new Cv('50000m^2').to('ha');
 console.log(hectare); // --> 5ha
 ```
 
-**7. Add** \
-Add two values.
+## How to calculate
+
+**1. Add** \
 
 ```javascript
 // Add two time values
