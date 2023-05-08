@@ -18,10 +18,10 @@ yarn add easy-unit
 
 ## Output Configuration
 
-You can customize output through options parameter on the `to` function. \
-The `to` function takes an optional `options` object that may contain any of the following keys:
+You can customize output through options parameter on the `to`, `add`, `subtract`, and `toString` function. \
+These functions takes an optional `options` object that may contain any of the following keys:
 
-### to(unit, [options])
+### func(...params, [options])
 
 **digit** \
 The number of digits to appear after the decimal point, should be a value between 1 and 100, inclusive.
@@ -71,12 +71,26 @@ console.log(unit); // --> h
 const unit = new Cv('30ha').getUnit();
 console.log(unit); // --> ha
 
+const cv = new Cv('3h');
+cv.unit = 'm';
+console.log(cv.unit); // --> 'm'
+
+const unit = new Cv('30ha').setUnit('a');
+console.log(unit); // --> a
+
 // Getter/Setter of base
 const base = new Cv('10kg').base;
 console.log(base); // --> 10
 
 const base = new Cv('24.5C').getBase();
 console.log(base); // --> 24.5
+
+const cv = new Cv('3h');
+cv.base = '10';
+console.log(cv.base); // --> '10'
+
+const unit = new Cv('30ha').setBase('2');
+console.log(unit); // --> 2
 ```
 
 ## How to convert
@@ -164,7 +178,7 @@ console.log(hectare); // --> 5ha
 
 ## How to calculate
 
-**1. Add** \
+**1. Add**
 
 ```javascript
 // Add two time values
@@ -180,7 +194,7 @@ const result = new Cv('5F').add('35C');
 console.log(result); // --> 100F
 ```
 
-**2. Subtract** \
+**2. Subtract**
 
 ```javascript
 // Add two time values
@@ -194,6 +208,18 @@ console.log(result); // --> 2km
 // Add two temperature values
 const result = new Cv('5F').subtract('35C');
 console.log(result); // --> -90F
+```
+
+## How to display
+
+```javascript
+// Instnace of Converter class will be print value
+const cv = new Cv('10m');
+console.log(cv); // --> 10m
+
+// Or, you can print value with toString function.
+const cv = new Cv('8h');
+console.log(cv.toString()); // --> 8h
 ```
 
 ## Authors

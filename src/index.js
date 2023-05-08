@@ -209,20 +209,6 @@ export default class Converter {
 			throw new Error('parameter unit expected a string');
 		}
 
-		if (digit && typeof digit !== 'number') {
-			throw new Error('parameter digit expected a number');
-		}
-
-		if (digit === 0 || digit > 100) {
-			throw new Error(
-				'parameter digit expected greater than 0 and less than 100'
-			);
-		}
-
-		if (typeof printUnit !== 'boolean') {
-			throw new Error('parameter printUnit expected a boolean');
-		}
-
 		const system = getSystem(this.#unit, unit);
 		if (!system) {
 			throw new Error('parameter expected a same system with base unit');
@@ -234,12 +220,14 @@ export default class Converter {
 			from: this.#unit,
 			to: unit,
 		});
-		const result = !digit ? value : Number(value).toFixed(digit);
 
-		return !printUnit ? Number(result) : `${result}${unit}`;
+		this.#base = value;
+		this.#unit = unit;
+
+		return this.toString({ digit, printUnit });
 	}
 
-	add(value) {
+	add(value, { digit = null, printUnit = true } = {}) {
 		if (typeof value !== 'string') {
 			throw new Error('parameter printUnit expected a string');
 		}
@@ -259,10 +247,10 @@ export default class Converter {
 		const result = this.#base + parseFloat(toValue);
 		this.#base = result;
 
-		return `${result}${this.#unit}`;
+		return this.toString({ digit, printUnit });
 	}
 
-	subtract(value) {
+	subtract(value, { digit = null, printUnit = true } = {}) {
 		if (typeof value !== 'string') {
 			throw new Error('parameter printUnit expected a string');
 		}
@@ -282,10 +270,26 @@ export default class Converter {
 		const result = this.#base - parseFloat(toValue);
 		this.#base = result;
 
-		return `${result}${this.#unit}`;
+		return this.toString({ digit, printUnit });
 	}
 
-	toString() {
-		return `${this.#base}${this.#unit}`;
+	toString({ digit = null, printUnit = true } = {}) {
+		if (digit && typeof digit !== 'number') {
+			throw new Error('parameter digit expected a number');
+		}
+
+		if (digit === 0 || digit > 100) {
+			throw new Error(
+				'parameter digit expected greater than 0 and less than 100'
+			);
+		}
+
+		if (typeof printUnit !== 'boolean') {
+			throw new Error('parameter printUnit expected a boolean');
+		}
+
+		const base = !digit ? this.#base : Number(this.#base).toFixed(digit);
+
+		return !printUnit ? Number(base) : `${base}${this.#unit}`;
 	}
 }
