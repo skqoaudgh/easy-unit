@@ -168,16 +168,32 @@ console.log(hectare); // --> 5ha
 
 ```javascript
 // Add two time values
-const result = new Cv('10m').to('3h');
+const result = new Cv('10m').add('3h');
 console.log(result); // --> 190m
 
 // Add two distance values
-const result = new Cv('1km').to('500m');
+const result = new Cv('1km').add('500m');
 console.log(result); // --> 1.5km
 
 // Add two temperature values
-const result = new Cv('5F').to('35C');
+const result = new Cv('5F').add('35C');
 console.log(result); // --> 100F
+```
+
+**2. Subtract** \
+
+```javascript
+// Add two time values
+const result = new Cv('3h').subtract('30m');
+console.log(result); // --> 2.5h
+
+// Add two distance values
+const result = new Cv('3km').subtract('1km');
+console.log(result); // --> 2km
+
+// Add two temperature values
+const result = new Cv('5F').subtract('35C');
+console.log(result); // --> -90F
 ```
 
 ## Authors

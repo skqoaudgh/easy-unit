@@ -262,6 +262,29 @@ export default class Converter {
 		return `${result}${this.#unit}`;
 	}
 
+	subtract(value) {
+		if (typeof value !== 'string') {
+			throw new Error('parameter printUnit expected a string');
+		}
+
+		const unit = parseValueToUnit(value) || this.#unit;
+		const system = getSystem(this.#unit, unit);
+		if (!system) {
+			throw new Error('parameter expected a same system with base unit');
+		}
+
+		const toValue = convert({
+			system,
+			base: parseFloat(value),
+			from: unit,
+			to: this.#unit,
+		});
+		const result = this.#base - parseFloat(toValue);
+		this.#base = result;
+
+		return `${result}${this.#unit}`;
+	}
+
 	toString() {
 		return `${this.#base}${this.#unit}`;
 	}

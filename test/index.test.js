@@ -181,6 +181,17 @@ describe('Manipulate', () => {
 			expect(value).toBe(expectedValues[i]);
 		}
 	});
+
+	it('Subtract two values', () => {
+		const from = ['3h', '3km', '5F'];
+		const subtractedValues = ['30m', '1km', '35C'];
+		const expectedValues = ['2.5h', '2km', '-90F'];
+
+		for (let i = 0; i < from.length; i++) {
+			const value = new Cv(from[i]).subtract(subtractedValues[i]);
+			expect(value).toBe(expectedValues[i]);
+		}
+	});
 });
 
 describe('Getter/Setter', () => {
