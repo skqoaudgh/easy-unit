@@ -96,7 +96,9 @@ console.log(unit); // --> 2
 ## How to convert
 
 **1. Time unit convert** \
-Convert time(hours, minutes, seconds, millieseconds) unit.
+Convert time unit wtih these tokens:
+
+`d`, `h`, `s`, `m`, `ms`
 
 ```javascript
 // Convert hours to minutes
@@ -113,7 +115,9 @@ console.log(hours); // --> 1h
 ```
 
 **2. Weight unit convert** \
-Convert weight(tons, killograms, grams, milligrams) unit.
+Convert weight unit wtih these tokens:
+
+`kt`, `t`, `kg`, `g`, `mg`
 
 ```javascript
 // Convert tons to killograms
@@ -130,7 +134,9 @@ console.log(killograms); // --> 0.01kg
 ```
 
 **3. Distance unit convert** \
-Convert distance(kilometers, meters, centimeters, millimeters) unit.
+Convert distance unit wtih these tokens:
+
+`mile`, `yd`, `ft`, `in`, `km`, `m`, `cm`, `mm`
 
 ```javascript
 // Convert kilometers to meters
@@ -147,7 +153,9 @@ console.log(centimeters); // --> 100cm
 ```
 
 **4. Temperature unit convert** \
-Convert temperature(Fahrenheit, Celsius) unit.
+Convert temperature unit wtih these tokens:
+
+`C`, `F`
 
 ```javascript
 // Convert Fahrenheit to Celsius
@@ -160,7 +168,9 @@ console.log(fahrenheit); // --> 0F
 ```
 
 **5. Area unit convert** \
-Convert area(hectare, are, square metre) unit.
+Convert area unit wtih these tokens:
+
+`ha`, `a`, `m^2`
 
 ```javascript
 // Convert hectare to are
