@@ -220,6 +220,38 @@ const result = new Cv('5F').subtract('35C');
 console.log(result); // --> -90F
 ```
 
+**3. Compare is greater**
+
+```javascript
+// Compare two time values
+const result = new Cv('3h').isGreater('30m');
+console.log(result); // --> true
+
+// Compare two distance values
+const result = new Cv('3km').isGreater('1km');
+console.log(result); // --> true
+
+// Compare two temperature values
+const result = new Cv('5F').isGreater('35C');
+console.log(result); // --> false
+```
+
+**4. Compare is less**
+
+```javascript
+// Compare two time values
+const result = new Cv('3h').isLess('30m');
+console.log(result); // --> false
+
+// Compare two distance values
+const result = new Cv('3km').isLess('1km');
+console.log(result); // --> false
+
+// Compare two temperature values
+const result = new Cv('5F').isLess('35C');
+console.log(result); // --> true
+```
+
 ## How to display
 
 ```javascript
