@@ -192,6 +192,28 @@ describe('Manipulate', () => {
 			expect(value).toBe(expectedValues[i]);
 		}
 	});
+
+	it('Compare is greater', () => {
+		const from = ['3h', '3km', '5F'];
+		const subtractedValues = ['30m', '1km', '35C'];
+		const expectedValues = [true, true, false];
+
+		for (let i = 0; i < from.length; i++) {
+			const value = new Cv(from[i]).isGreater(subtractedValues[i]);
+			expect(value).toBe(expectedValues[i]);
+		}
+	});
+
+	it('Compare is less', () => {
+		const from = ['3h', '3km', '5F'];
+		const subtractedValues = ['30m', '1km', '35C'];
+		const expectedValues = [false, false, true];
+
+		for (let i = 0; i < from.length; i++) {
+			const value = new Cv(from[i]).isLess(subtractedValues[i]);
+			expect(value).toBe(expectedValues[i]);
+		}
+	});
 });
 
 describe('Getter/Setter', () => {

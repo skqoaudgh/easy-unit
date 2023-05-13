@@ -8,6 +8,17 @@
 		"type": "git",
 		"url": "https://github.com/skqoaudgh/easy-unit"
 	},
+	"keywords": [
+		"easy-unit",
+		"js",
+		"unit",
+		"converter",
+		"math",
+		"tools",
+		"parsing",
+		"metric",
+		"utils"
+	],
 	"scripts": {
 		"build": "rollup -c",
 		"test": "jest",

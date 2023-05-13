@@ -279,6 +279,48 @@ export default class Converter {
 		return this.toString({ digit, printUnit });
 	}
 
+	isGreater(value) {
+		if (typeof value !== 'string') {
+			throw new Error('parameter printUnit expected a string');
+		}
+
+		const unit = parseValueToUnit(value) || this.#unit;
+		const system = getSystem(this.#unit, unit);
+		if (!system) {
+			throw new Error('parameter expected a same system with base unit');
+		}
+
+		const toValue = convert({
+			system,
+			base: parseFloat(value),
+			from: unit,
+			to: this.#unit,
+		});
+		const result = this.#base > parseFloat(toValue);
+		return result;
+	}
+
+	isLess(value) {
+		if (typeof value !== 'string') {
+			throw new Error('parameter printUnit expected a string');
+		}
+
+		const unit = parseValueToUnit(value) || this.#unit;
+		const system = getSystem(this.#unit, unit);
+		if (!system) {
+			throw new Error('parameter expected a same system with base unit');
+		}
+
+		const toValue = convert({
+			system,
+			base: parseFloat(value),
+			from: unit,
+			to: this.#unit,
+		});
+		const result = this.#base < parseFloat(toValue);
+		return result;
+	}
+
 	toString({ digit = null, printUnit = true } = {}) {
 		if (digit && typeof digit !== 'number') {
 			throw new Error('parameter digit expected a number');
